@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            height: 100px;
+            width: 173.2px;
+            background: lightcoral;
+            margin: 200px auto;
+            position: relative;
+        }
+        .box::before{
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+            border-right: 86.6px solid transparent;
+            border-bottom: 50px solid lightcoral;
+            border-left: 86.6px solid transparent;
+            position: absolute;
+            left: 0;
+            top: -50px;
+        }
+        .box::after{
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+            border-right: 86.6px solid transparent;
+            border-top: 50px solid lightcoral;
+            border-left: 86.6px solid transparent;
+            position: absolute;
+            left: 0;
+            bottom: -50px;
+        }
+        .t{
+            height: 0px;
+            width: 0px;
+            /* border-top: 100px solid #000; */
+            border-right: 100px solid transparent;
+            border-bottom: 100px solid green;
+            border-left: 100px solid transparent;
+            margin:100px; 
+        }
+    </style>
+</head>
+<body>
+    <!-- 边长相等  角度为120deg -->
+    <div class="box"></div>
+    <div class="t"></div>
+</body>
+</html>

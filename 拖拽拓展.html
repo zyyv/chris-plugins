@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+            border-radius: 50%;
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            z-index: 2;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+            border-radius: 50%;
+            position: absolute;
+            top: 30%;
+            left: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script>
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var body = document.getElementsByTagName('body')[0];
+        var eX, eY, box1L, box1T, box1W, box1H, disX, disY;
+        var drag = false;
+        var box2L = box2.offsetLeft;
+        var box2T = box2.offsetTop;
+        var w = box1.offsetWidth;
+        var h = box1.offsetHeight;
+
+        function bindEvent() {
+            box1.onmousedown = function (e) {
+                var event = e || window.event;
+                drag = true;
+                eX = event.clientX;
+                eY = event.clientY;
+                box1L = this.offsetLeft;
+                box1T = this.offsetTop;
+                disX = eX - box1L;
+                disY = eY - box1T;
+            }
+            body.onmousemove = function (e) {
+                var event = e || window.event;
+                if (drag) {
+                    box1.style.left = event.clientX - disX + 'px';
+                    box1.style.top = event.clientY - disY + 'px';
+                    var l = box1.offsetLeft;
+                    var t = box1.offsetTop;
+                    var coverHeight, coverWidth;
+                    if ((l + w >= box2L) && (l <= box2L)) {
+                        coverWidth = l + w - box2L;
+                    } else if ((box2L + w > l) && (box2L + w < l + w)) {
+                        coverWidth = box2L + w - l;
+                    }
+
+                    if(t + h >= box2T && box2T > t){
+                        coverHeight = t + h - box2T;
+                    }else if (box2T + h >= t && t + h >= box2T + h){
+                        coverHeight = box2T + h - t;
+                    }
+                    if(coverWidth * coverHeight == 10000){
+                        alert('cover');
+                    };
+
+                }
+            }
+            box1.onmouseup = function () {
+                drag = false;
+            }
+        }
+
+        bindEvent();
+    </script>
+</body>
+
+</html>

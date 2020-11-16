@@ -1,0 +1,106 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+html,body{
+  height: 100%;
+  background-color: #000814;
+}
+.button{
+  font-family: "alliance",mono,sans-serif;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 4px 20px;
+  width: 200px;
+  height: 56px;
+  border-radius: 0;
+  overflow: hidden;
+  background: transparent;
+  color: #fff;
+  transition: background .4s ease-in-out,border-color .4s ease-in-out,color .4s ease-in-out;
+}
+.button:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    top: 2px;
+    left: 2px;
+    background: #000814;
+    z-index: -1;
+    transform: translate3d(0, 0, 0);
+    transition: background .4s ease-in-out;
+}
+.button:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    z-index: -3;
+    background: transparent;
+    background: linear-gradient(264.51deg, #FFE580 4.38%, #FF7571 11.51%, #FF7270 25.06%, #EA5DAD 36.04%, #C2A0FD 47.63%, #9867F0 59.03%, #3BF0E4 69.96%, #33CE43 83.74%, #B2F4B6 95.62%);
+    background-position: 58% 50%;
+    background-size: 500%;
+    animation: gradient-shift 30s ease infinite;
+}
+.button:before {
+    background: #09111D;
+}
+.button:hover:before {
+    background: transparent;
+}
+@keyframes gradient-shift {
+    0% {
+        background-position: 58% 50%
+    }
+
+    25% {
+        background-position: 100% 0%
+    }
+
+    75% {
+        background-position: 10% 50%
+    }
+
+    to {
+        background-position: 58% 50%
+    }
+}
+.content{
+  color: #fff;
+  font-family: "alliance",mono,sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.text-gradient{
+    background: linear-gradient(267.91deg, #FFE57F 9.35%, #FF7170 96.48%);
+    -webkit-box-decoration-break: clone;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.gradient-text {
+    background: linear-gradient(264.51deg, #FFE580 4.38%, #FF7571 11.51%, #FF7270 25.06%, #EA5DAD 36.04%, #C2A0FD 47.63%, #9867F0 59.03%, #3BF0E4 69.96%, #33CE43 83.74%, #B2F4B6 95.62%);
+    background-position: 58% 50%;
+    background-size: 500%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-animation: gradient-shift 30s ease infinite;
+    animation: gradient-shift 30s ease infinite;
+    -webkit-text-fill-color: transparent;
+}

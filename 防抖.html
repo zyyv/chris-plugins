@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input  id="inp" type="text">
+    <script>
+        var inp = document.getElementById('inp');
+        // var timer = null;
+        inp.oninput = debounce(ajax,2000);
+        
+        
+        function ajax(e){
+            console.log(this.value)
+        }
+
+        // 防抖
+        function debounce(handler , delay){
+            var timer = null;
+            return function(){
+                var _self = this,
+                    _args = arguments;
+                    console.log(timer);
+                clearTimeout(timer);
+                timer = setTimeout(function (){
+                    handler.apply(_self,_args);
+                },delay)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-01-12 20:28:46
+ * @LastEditors  : sueRimn
+ * @LastEditTime : 2020-01-12 21:40:26
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /***** 正则 *****/
+
+    /* 进阶
+      // 捕获组  
+           概念: 小括号括起来  （）
+           具名捕获组：给捕获组命名   （?<名字>xxxx）    exec方法返回的数组中 ，groups中有值，是一个对象 
+           非捕获组：括起来不希望变成一个捕获组   (?:)   
+           
+           exp:   replace中使用捕获组
+                var str = `2019-5-1,2018-6-24,2019-12-12`
+                var reg = /(\d{4})-(\d{1,2})-(\d{1,2})/g
+                // str = str.replace(reg, function (match, g1, g2, g3) {
+                // console.log(match, g1, g2, g3);
+                // return `${g1}/${g2}/${g3}`
+                // })
+                str = str.replace(reg,'$1/$2/$3') //特殊字符串 $1 代表第一个捕获组 依次类推
+                console.log(str);
+      
+      //反向引用
+              在正则表达式中，使用某个捕获组    使用:   \n      n代表某个捕获组编号   例如   \1
+              如果引用具名捕获组   （?<abc>xxxx）\k<abc>  
+          abab   /(\w{2})\1/g 
+          aabb   /(\w)\1(\w)\2/g
+          
+      // 正向断言（预查）
+           检查某个字符后面的字符是否满足某个规则  该规则不成为捕获组，该规则不成为匹配结果
+           （?=xxxx）
+                  面试题：'100000000'   每三位加一个逗号   1,000,000,000
+                  var str = '1000000000'
+                  var reg = /\B(?=(\d{3})+$)/g
+                  str = str.replace(reg,',')
+                  console.log(str)
+
+
+      // 反向断言（预查）    
+            检查某个字符后面的字符不满足某个规则 该规则不成为捕获组，该规则不成为匹配结果
+                (?!xxxx)
+       */
+
+
+    /** 正则过滤敏感词汇 */
+    /**
+     *
+     * @param {String} str 验证的字符串 
+     * @param {Array} sens 敏感词汇
+     * @param {String} rep 替代字符串
+     */
+    function replaceSensitiveWords(str, sens, rep) {
+      var reg = new RegExp(`(${sens.join('|')})+`, 'g')
+      str = str.replace(reg, rep)
+    }
+
+    /** 判断密码强度 
+     * 要求必须出现 小写字母 大写字母 数字 特殊符号（!@#_,.）  6--12位
+     */
+    function checkPwdStrong(pwd) {
+      var hReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#_,.]).{6,12}$/
+      var mReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,12}$/
+      var lReg = /^(?=.*[a-z])(?=.*[A-Z]).{6,12}$/
+      if (hReg.test(pwd)) {
+        return '强'
+      } else if (mReg.test(pwd)) {
+        return '中'
+      } else if (lReg.test(pwd)) {
+        return '低'
+      } else {
+        return '不满足要求'
+      }
+    }
+  </script>
+</body>
+
+</html>

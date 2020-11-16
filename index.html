@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试</title>
+</head>
+
+<body>
+    <input type="text" id="inp">
+    <button id="sub">获取</button>
+    <script src="Plugin/myPlugin.js"></script>
+    <script>
+        // function randomNum(min, max) {
+        //     return Math.floor(min + Math.random() * (max - min));
+        // }
+        // var inp = document.getElementById('inp');
+        // var sub = document.getElementById('sub');
+        // var str='';
+        // sub.onclick = function(){
+        //     var val = inp.value;
+        //     if(!val){return;}
+        //     for(var i = 0;i<val;i++){
+        //         str += randomNum(0,10);
+        //     }
+        //     console.log(str);
+        //     str='';
+        // }
+
+
+
+        // var arr = [1, 2, 3, 4, 5, 4, 3];
+        // var resArr = [];
+        // var resObj = {};
+        // resArr = arr.forEach(function(val,index){
+        //     if(resArr)
+        // })
+        // for (var i = 0; i < arr.length; i++) {
+        //     if(resArr.indexOf(arr[i]) == -1){
+        //         resArr.push(arr[i]);
+        //     }
+
+
+        //     if(!resObj[arr[i]]){
+        //         resObj[arr[i]] = arr[i];
+        //     }
+        // }
+        // for (const key in resObj) {
+        //     resArr.push(parseInt(key))
+        // }
+        // console.log(resArr);
+
+        // 字符串替换 abc-->111
+        // var str = "abc asd asde dasfas dasfasas gsgdfi abc";
+        // str = str.replace(/abc/g,111);
+        // var arr = str.split('');
+
+        //统计出现最多的次数
+        var str = 'aaaeeeerrrrttttyyyyuuuu';
+        var i, obj = {};
+        for (i = 0; i < str.length; i++) {
+            obj[str[i]] ? obj[str[i]]++ : obj[str[i]] = 1;
+        }
+        for (var key in obj) {
+           console.log(key,obj[key])
+        }
+
+
+
+
+
+
+        // var ary = "asasDFGHadDfFFhjkMNJGBHGDsdfghjfghjkdfghjkl";
+        // var obj = {};
+        // var i = 0;
+        // var max =0;
+
+        // ary1 = ary.toLocaleLowerCase(); //将字符串转为小写
+
+        // for (i = 0; i < ary1.length; i++) {
+        //     key = ary1[i];
+
+        //     if (obj[key]) {
+        //         //对象中有这个字母
+        //         obj[key]++;
+        //     } else {
+        //         //对象中没有这个字母,把字母加到对象中
+        //         obj[key] = 1;
+        //     }
+        // }
+
+        // for (var key in obj) //遍历这个对象
+        // {
+        //     max = obj[key] > max ? obj[key] : max;
+        // }
+
+
+
+
+        // function deepClone(origin, target) {
+        //     var target = target || {},
+        //         toStr = Object.prototype.toString,
+        //         arrStr = '[object Array]';
+
+        //     for (var prop in origin) {
+        //         if (origin.hasOwnProperty(prop)) {
+        //             if (origin[prop] !== 'null' && typeof (origin[prop]) == 'object') {
+        //                 if (toStr.call(origin[prop]) == arrStr) {
+        //                     target[prop] = []
+        //                 } else {
+        //                     target[prop] = {}
+        //                 }
+        //                 deepClone(origin[prop], target[prop])
+        //             }
+        //         } else {
+        //             target[prop] = origin[prop];
+        //         }
+        //     }
+        //     return target;
+        // }
+
+        function deepClone(origin,target){
+            var target = target || {},
+                toStr = Array.prototype.toString,
+                arrStr = '[object Array]';
+
+                for(var key in origin){
+                    if(origin.hasOwnPropety(key)){
+                        if(toStr.call(origin[key]) == arrStr ){
+                            target[key] = deepClone(origin[key]);
+                        }
+                    }else{
+                        target[key] = origin[key];
+                    }
+                }
+        }
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        //         function startMove(obj,target){
+        //             clearInterval(timer);
+        //             var iSpeed;
+        //             timer= setInterval(function(){
+        //                 iSpeed = (target -  ) / 7;
+        //                 iSpeed  = iSpeed > 0?Math.ceil(iSpeed):Math.floor(iSpeed);
+        //                 if(obj.offsetLeft === target){
+        //                     clearInterval(timer);
+        //                 }else{
+        //                     obj.style.left = obj.offsetLeft + iSpeed +'px';
+        //                 }
+        //             },30);
+        //         }
+
+        // //得到是字符串   getStyle(obj,'width');
+        //         function getStyle(obj,attr){
+        //             if(obj.currentStyle){
+        //                 return obj.currentStyle[attr];
+        //             }else{
+        //                 return window.getComputedStyle(obj,false)[attr];
+        //             }
+        //         }
+
+
+        // function startMove(obj, target, attr) {
+        //     clearInterval(obj.timer);
+        //     var iSpeed, iCur;
+        //     obj.timer = setInterval(function () {
+        //         if (attr == 'opacity') {
+        //             iCur = parseInt(getStyle(obj, attr)) * 100;
+        //         } else {
+        //             iCur = parseInt(getStyle(obj, attr));
+        //         }
+        //         iSpeed = (target - iCur) / 7;
+        //         iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+        //         if (iCur == target) {
+        //             clearInterval(obj.timer);
+        //         } else {
+        //             if (attr == 'opacity') {
+        //                 obj.style.opacity = (iCur + iSpeed) / 100;
+        //             } else {
+        //                 obj.style[attr] = iCur + iSpeed + 'px';
+        //             }
+        //         }
+        //     }, 30)
+        // }
+
+        function getStyle(obj, attr) {
+            if (obj.currentStyle) {
+                return obj.currentStyle[attr];
+            } else {
+                return window.getComputedStyle(obj, false)[attr];
+            }
+        }
+
+        function startMove(obj, json) {
+            clearInterval(obj.timer);
+            var iSpeed, iCur;
+            obj.timer = setInterval(function () {
+                var bStop = true;
+                for (var attr in json) {
+                    if (attr == 'opacity') {
+                        iCur = parseInt(getStyle(obj, attr)) * 100;
+                    } else {
+                        iCur = parseInt(getStyle(obj, attr));
+                    }
+                    iSpeed = (json[attr] - iCur) / 7;
+                    iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                    if (attr == 'opacity') {
+                        obj.style.opacity = (iCur + iSpeed) / 100;
+                    } else {
+                        obj.style[attr] = iCur + iSpeed + 'px';
+                    }
+                    if (iCur != json[attr]) {
+                        bStop = false;
+                    }
+                }
+                if (bStop) {
+                    clearInterval(timer);
+                }
+            }, 30)
+        }
+        //多物体多值链式运动
+    </script>
+</body>
+
+</html>

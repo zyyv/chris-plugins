@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 500px;
+            height: 200px;
+            background-color: lightcoral;
+            margin: 200px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box');
+        // 判断鼠标在元素上 移入移出的方向
+        function bindEvent() {
+            box.onmouseenter = function (e) {
+                get(e,'进')
+            }
+            box.onmouseleave = function (e) {
+                get(e,'出')
+            }
+        }
+
+        function get(event,str) {
+            var d = getDer(event);
+            var dir = '';
+            switch (d) {
+                case 0:
+                    dir = '上';
+                    break;
+                case 1:
+                    dir = '右';
+                    break;
+                case 2:
+                    dir = '下';
+                    break;
+                case 3:
+                    dir = '左';
+                    break;
+            }
+            console.log(str+'-->'+dir);
+        }
+
+        function getDer(event) {
+            var w = box.offsetWidth;
+            var h = box.offsetHeight;
+            var l = box.offsetLeft;
+            var t = box.offsetTop;
+            //如果是长方形   做一个兼容判断  缩小为一个长宽一致的正方形  比例：小/大;
+            var x = (event.clientX - l - w / 2) * (w > h ? (h / w) : 1);
+            var y = (event.clientY - t - h / 2) * (h > w ? (w / h) : 1);
+            var d;
+            // console.log(x,y); 
+            d = (Math.round((Math.atan2(y, x) * (180 / Math.PI) + 180) / 90) + 3) % 4;
+            return d;
+        }
+        bindEvent();
+    </script>
+</body>
+
+</html>

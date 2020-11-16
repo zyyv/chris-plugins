@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="show">0</div>
+    <button id="btn">click me</button>
+    <script>
+        //节流思想：在等待的时间内，不管你执行多少次，只记录一次
+        var div=document.getElementById('show');
+        var btn = document.getElementById('btn');
+        function throttle(handler,wait){
+            var lastTime = 0;
+            return function(e){
+                var args = arguments;
+                var nowTime = new Date().getTime();
+                if(nowTime - lastTime > wait){
+                    handler.apply(this,args);
+                    lastTime = nowTime;
+                }
+            }
+        }
+        function buy(e){
+            console.log(this,e);
+            div.innerText = parseInt(div.innerText) + 1;
+        }
+        btn.onclick = throttle(buy,1000);
+    </script>
+</body>
+</html>
