@@ -42,7 +42,7 @@ Function.prototype.myApply = function (ctx, arr) {
 Function.prototype.myBind = function (target = window) {
   var self = this
   var args = [].slice.call(arguments, 1)
-  var temp = function () {}
+  var temp = function () { }
   var f = function () {
     var _args = [].slice.call(arguments, 0)
     return self.apply(this instanceof temp ? this : target, args.concat(_args))
@@ -53,7 +53,7 @@ Function.prototype.myBind = function (target = window) {
 }
 //---------------------------------------------------------------------
 // 深度克隆
-function deepClone(origin, target) {
+function deepClone (origin, target) {
   var target = target || {},
     toStr = Object.prototype.toString,
     arrStr = '[object Array]';
@@ -77,8 +77,8 @@ function deepClone(origin, target) {
 
 // ---------------------------------------------------------------------------
 // 继承 圣杯模式
-function inherit(Target, Origin) {
-  function F() {};
+function inherit (Target, Origin) {
+  function F () { };
   F.prototype = Origin.prototype;
   Target.prototype = new F();
   Target.prototype.constrctor = Target;
@@ -105,7 +105,7 @@ function inherit(Target, Origin) {
  * @param {fn} 
  * @return: 
  */
-function FixedParamCurry(fn) {
+function FixedParamCurry (fn) {
   var arg = [].slice.call(arguments, 1);
   return function () {
     var newArg = arg.concat([].slice.call(arguments, 0));
@@ -120,7 +120,7 @@ function FixedParamCurry(fn) {
  * @param {type} 
  * @return: 返回一个新的函数，
  */
-function Curry(fn, length) {
+function Curry (fn, length) {
   var length = length || fn.length;
   return function () {
     if (arguments.length < length) {
@@ -162,7 +162,7 @@ function Curry(fn, length) {
 
 
 //数组扁平化  -->将一个维度很深的数组  展开成一位数组
-function flatten(arr) {
+function flatten (arr) {
   var arr = arr || [],
     resArr = [],
     len = arr.length;
@@ -176,7 +176,7 @@ function flatten(arr) {
   return resArr;
 }
 
-function isArray(arr) {
+function isArray (arr) {
   var arrStr = '[object Array]';
   return Object.prototype.toString.call(arr) == arrStr;
 }
@@ -197,7 +197,7 @@ Array.prototype.flatten = function () {
   return resArr;
 }
 
-function newFlatten(arr) {
+function newFlatten (arr) {
   var arr = arr || [];
   return arr.reduce(function (prev, next) {
     return Object.prototype.toString.call(next) == '[object Array]' ? prev.concat(newFlatten(next)) : prev.concat(next);
@@ -244,11 +244,11 @@ const flattenNew = arr => arr.reduce((prev, next) => Object.prototype.toString.c
 //     }
 // }
 
-function toUpperCase(str) {
+function toUpperCase (str) {
   return str.toUpperCase();
 }
 
-function add(str) {
+function add (str) {
   return str + '!';
 }
 var f = compose1(add, toUpperCase);
@@ -256,7 +256,7 @@ var f = compose1(add, toUpperCase);
 
 // 普遍意义的函数组合
 
-function compose() {
+function compose () {
   var args = Array.prototype.slice.call(arguments);
   var len = args.length - 1; //最后一个函数
   return function (x) {
@@ -268,7 +268,7 @@ function compose() {
   }
 }
 
-function compose1() {
+function compose1 () {
   var args = Array.prototype.slice.call(arguments);
   return function (x) {
     return args.reduceRight(function (res, cb) {
@@ -278,7 +278,7 @@ function compose1() {
 }
 
 // 函数组合 自左向右
-function compose2() {
+function compose2 () {
   var args = Array.prototype.slice.call(arguments);
   return function (x) {
     return args.reduce(function (res, cb) {
@@ -296,7 +296,7 @@ function compose2() {
 //--------------------------------------------------------------
 // 函数记忆 
 
-function factorial(n) {
+function factorial (n) {
   if (n == 0 || n == 1) {
     return 1;
   } else {
@@ -305,7 +305,7 @@ function factorial(n) {
 }
 
 // 记忆函数
-function memorize(fn) {
+function memorize (fn) {
   var cache = {};
   return function () {
     var key = arguments.length + Array.prototype.join.call(arguments);
@@ -329,7 +329,7 @@ function memorize(fn) {
 
 
 
-function ajaxFn(method, url, callBack, data, flag = true) {
+function ajaxFn (method, url, callBack, data, flag = true) {
   let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHttp')
   method = method.toUpperCase();
   xhr.onreadystatechange = function () {
@@ -348,11 +348,11 @@ function ajaxFn(method, url, callBack, data, flag = true) {
 }
 
 // 复制到粘贴板
-copyShaneUrl (shareLink) {
-      var input = document.createElement('input') // 直接构建input
-      input.value = shareLink // 设置内容
-      document.body.appendChild(input) // 添加临时实例
-      input.select() // 选择实例内容
-      document.execCommand('Copy') // 执行复制
-      document.body.removeChild(input) // 删除临时实例
-    }
+copyShaneUrl(shareLink) {
+  var input = document.createElement('input') // 直接构建input
+  input.value = shareLink // 设置内容
+  document.body.appendChild(input) // 添加临时实例
+  input.select() // 选择实例内容
+  document.execCommand('Copy') // 执行复制
+  document.body.removeChild(input) // 删除临时实例
+}
