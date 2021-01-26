@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Jura", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(to right, #4158d0, #ffcc70, #c850c0); */
+  background: linear-gradient(180deg, #FEEFFF 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(251.16deg, #CDDEFD 14.97%, rgba(255, 255, 255, 0) 88.15%), #DEFFE5;
+}
+
+.glass {
+  font-size: 100px;
+  font-weight: bold;
+  background: linear-gradient(to right, #ffcc70, #4158d0, #c850c0);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.card {
+  position: absolute;
+  width: 600px;
+  height: 350px;
+  border-radius: 20px;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(8px);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .2);
+  /* border-top: 1px solid rgba(255, 255, 255, 0.8); */
+  /* border-left: 1px solid rgba(255, 255, 255, 0.8); */
+}
+
+.card .radius {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  clip: rect(0, 20px, 20px, 0);
+  z-index: -1;
+}
+
+.card::before {
+  content: '';
+  display: block;
+  width: calc(100% - 40px);
+  height: 1px;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  background: linear-gradient(to right, #fff, transparent);
+  z-index: 2;
+  border-radius: 20px;
+}
+
+.card::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: calc(100% - 40px);
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  background: linear-gradient(to bottom, #fff, transparent);
+  z-index: 2;
+  border-radius: 20px;
+}
