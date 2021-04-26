@@ -135,29 +135,29 @@ function Curry (fn, length) {
 
 //fn(1,2,3,4)  fn(1)(2)(3)(4)  fn(1,2)(3,4)
 /* 柯里化案例*/
-// function ajax(type,url,data){
-//     // var xhr=new XMLHttpRequest();
-//     // xhr.open(type,url,true);
-//     // xhr.send(data);
-//     console.log(type);
-//     console.log(url);
-//     console.log(data);
-// }
-// //虽然ajax这个函数非常通用，但是重复调用时参数冗余
-// // ajax('POST','www.test1.com','name=chris');
-// // ajax('POST','www.test2.com','name=chris');
-// // ajax('POST','www.test3.com','name=chris');
-// //利用柯里化curry
-// var ajaxCurry = Curry(ajax);
-// //以post请求的函数
-// var post = ajaxCurry('post');
+function ajax(type,url,data){
+    // var xhr=new XMLHttpRequest();
+    // xhr.open(type,url,true);
+    // xhr.send(data);
+    console.log(type);
+    console.log(url);
+    console.log(data);
+}
+//虽然ajax这个函数非常通用，但是重复调用时参数冗余
+// ajax('POST','www.test1.com','name=chris');
+// ajax('POST','www.test2.com','name=chris');
+// ajax('POST','www.test3.com','name=chris');
+//利用柯里化curry
+var ajaxCurry = Curry(ajax);
+//以post请求的函数
+var post = ajaxCurry('post');
 
-// post('www.test1.com','name=chris');
+post('www.test1.com','name=chris');
 
-// //以post 请求于 www.test.com 的数据 函数
-// var postFromTest = post('www.test.com');
+//以post 请求于 www.test.com 的数据 函数
+var postFromTest = post('www.test.com');
 
-// postFromTest('name=chris001');
+postFromTest('name=chris001');
 //---------------------------------------------------------------------
 
 
@@ -211,28 +211,28 @@ const flattenNew = arr => arr.reduce((prev, next) => Object.prototype.toString.c
 //惰性函数  利用闭包  改变函数主体
 //eg:记录函数首次调用时间
 
-// var test = function(){
-//     var t = new Date().getTime();
-//     test = function(){
-//         return t;
-//     }
-//     return test();
-// }
+var test = function(){
+    var t = new Date().getTime();
+    test = function(){
+        return t;
+    }
+    return test();
+}
 
-//实例
-// function addEvent(dom , type , handler){
-//     if(dom.addEventListener){
-//         dom.addEventListener(type,handler,false);
-//         addEvent = function(dom , type , handler){
-//             dom.addEventListener(type,handler,false);
-//         }
-//     }else{
-//         dom.attachEvent('on'+type,handler);
-//         addEvent = function(dom , type , handler){
-//             dom.attachEvent('on'+type,handler);
-//         }
-//     }
-// }
+// 实例
+function addEvent(dom , type , handler){
+    if(dom.addEventListener){
+        dom.addEventListener(type,handler,false);
+        addEvent = function(dom , type , handler){
+            dom.addEventListener(type,handler,false);
+        }
+    }else{
+        dom.attachEvent('on'+type,handler);
+        addEvent = function(dom , type , handler){
+            dom.attachEvent('on'+type,handler);
+        }
+    }
+}
 //-----------------------------------------------------------
 
 
@@ -245,13 +245,13 @@ const flattenNew = arr => arr.reduce((prev, next) => Object.prototype.toString.c
 // }
 
 function toUpperCase (str) {
-  return str.toUpperCase();
+  return str.toUpperCase()
 }
 
 function add (str) {
-  return str + '!';
+  return str + '!'
 }
-var f = compose1(add, toUpperCase);
+var f = compose1(add, toUpperCase)
 // console.log(f('asd'));
 
 // 普遍意义的函数组合
